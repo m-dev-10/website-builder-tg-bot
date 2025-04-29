@@ -1,10 +1,16 @@
+require('dotenv').config();
+
 const TelegramBot = require('node-telegram-bot-api');
 
 
-const token = '7743609399:AAG6C2VX8i9hZ6JxvRuAt2ds9PsMvgE5xvw'
+const token = process.env.TELEGRAM_TOKEN;
 const builderUrl = 'https://website-builder.develop.kokoc.tech/'
 const builderDemoUrl = 'https://website-builder.demo.develop.kokoc.tech/'
 const bot = new TelegramBot(token, {polling: true});
+
+bot.setMyCommands([
+  { command: 'start', description: 'Показать кнопки' },
+]);
 
 bot.on('message', async (msg) => {
   const chatId = msg.chat.id;
